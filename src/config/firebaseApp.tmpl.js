@@ -1,3 +1,5 @@
+// 認証情報を記述後、ファイル名の「.tmpl」を削除
+
 // 参考：https://zenn.dev/hiro__dev/articles/605161cd5a7875
 
 // Import the functions you need from the SDKs you need
