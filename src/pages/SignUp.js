@@ -6,6 +6,7 @@ const SignUp = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    console.log("signupだー");
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -17,13 +18,13 @@ const SignUp = () => {
 
     return (
         <div style={{
-            backgroundColor: '#ccc',
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '400px',
-            lineHeight: '3'
+            // backgroundColor: '#ccc',
+            // position: 'absolute',
+            // top: '50%',
+            // left: '50%',
+            // transform: 'translate(-50%, -50%)',
+            // width: '400px',
+            // lineHeight: '3'
         }}>
             <h1 style={{
                 margin: '0',

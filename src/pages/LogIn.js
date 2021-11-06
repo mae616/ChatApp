@@ -1,8 +1,12 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useContext, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+
 import firebaseApp from '../config/firebaseApp'
+import { AuthContext } from '../AuthService'
 
 const LogIn = () => {
+
+    console.log('loginだー')
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -16,15 +20,28 @@ const LogIn = () => {
             .catch(err => console.log(err))
     }
 
+    // ログインしている場合は、"/"へリダイレクトする
+    const user = useContext(AuthContext)
+    const navigate = useNavigate();
+
+    console.log('user' + user)
+
+    useEffect(() => {
+        if (user) {
+            console.log('/にとばせー')
+            navigate("/", { replace: true });
+        }
+    })
+
     return (
         <div style={{
-            backgroundColor: '#ccc',
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '400px',
-            lineHeight: '3'
+            // backgroundColor: '#ccc',
+            // position: 'absolute',
+            // top: '50%',
+            // left: '50%',
+            // transform: 'translate(-50%, -50%)',
+            // width: '400px',
+            // lineHeight: '3'
         }}>
             <h1 style={{
                 margin: '0',
