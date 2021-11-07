@@ -1,61 +1,40 @@
-import { useState, useContext, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useState, useContext } from 'react'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 import firebaseApp from '../config/firebaseApp'
 import { AuthContext } from '../AuthService'
 
-const LogIn = () => {
+import './pages.css'
 
-    console.log('loginだー')
+const LogIn = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const navigate = useNavigate();
 
     const handleSubmit = e => {
         e.preventDefault()
         firebaseApp.auth().signInWithEmailAndPassword(email, password)
             .then(() => {
-                console.log('logged In!')
+                navigate('/', { replace: true });
             })
             .catch(err => console.log(err))
     }
 
     // ログインしている場合は、"/"へリダイレクトする
     const user = useContext(AuthContext)
-    const navigate = useNavigate();
 
-    console.log('user' + user)
-
-    useEffect(() => {
-        if (user) {
-            console.log('/にとばせー')
-            navigate("/", { replace: true });
-        }
-    })
+    if (user) {
+        return <Navigate to='/' replace={true} />
+    }
 
     return (
-        <div style={{
-            // backgroundColor: '#ccc',
-            // position: 'absolute',
-            // top: '50%',
-            // left: '50%',
-            // transform: 'translate(-50%, -50%)',
-            // width: '400px',
-            // lineHeight: '3'
-        }}>
-            <h1 style={{
-                margin: '0',
-                padding: '10px',
-                fontSize: '18px'
-            }}>Sign In</h1>
-            <form
-                onSubmit={handleSubmit}
-                style={{
-                    textAlign: 'center'
-                }}
-            >
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <label htmlFor='email' style={{ display: 'block', width: '100px' }}>E-mail</label>
+        <div className='form-wrap'>
+            <h1>Sign In</h1>
+            <form onSubmit={handleSubmit}>
+                <div className='input-wrap'>
+                    <label htmlFor='email'>E-mail</label>
                     <input
                         type='email'
                         value={email}
@@ -63,14 +42,10 @@ const LogIn = () => {
                         name='email'
                         placeholder='email'
                         onChange={e => setEmail(e.target.value)}
-                        style={{
-                            fontSize: '16px',
-                            width: '250px',
-                            padding: '5px'
-                        }} />
+                    />
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <label htmlFor='password' style={{ display: 'block', width: '100px' }}>Password</label>
+                <div className='input-wrap'>
+                    <label htmlFor='password'>Password</label>
                     <input
                         type='password'
                         value={password}
@@ -78,22 +53,12 @@ const LogIn = () => {
                         name='password'
                         placeholder='password'
                         onChange={e => setPassword(e.target.value)}
-                        style={{
-                            fontSize: '16px',
-                            width: '250px',
-                            padding: '5px'
-                        }} />
+                    />
                 </div>
-                <button type='submit' style={{
-                    backgroundColor: '#666',
-                    color: 'white',
-                    width: '150px',
-                    border: 'none',
-                    padding: '5px'
-                }} >ログイン</button><br />
-                <Link to='/signup' >新規登録</Link><br />
-            </form >
-        </div >
+                <button type='submit'>ログイン</button><br />
+                <Link to='/signup'>新規登録</Link><br />
+            </form>
+        </div>
     )
 
 }

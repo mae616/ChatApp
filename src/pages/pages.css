@@ -1,0 +1,43 @@
+.form-wrap {
+    background-color: #ccc;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    line-height: 3;
+}
+
+.form-wrap h1 {
+    margin: 0;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.form-wrap form {
+    text-align: center;
+}
+
+.input-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.input-wrap label{
+    display: block;
+    width: 100px;
+}
+
+.input-wrap input{
+    font-size: 16px;
+    width: 250px;
+    padding: 5px;
+}
+
+.form-wrap button {
+    background-color: #666;
+    color: white;
+    width: 150px;
+    border: none;
+    padding: 5px;
+}
