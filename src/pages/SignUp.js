@@ -8,10 +8,16 @@ const SignUp = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [name, setName] = useState('')
 
     const handleSubmit = e => {
         e.preventDefault()
         firebaseApp.auth().createUserWithEmailAndPassword(email, password)
+            .then(({ user }) => {
+                user.updateProfile({
+                    displayName: name
+                })
+            })
             .catch(err => {
                 console.log(err)
             })
@@ -47,9 +53,11 @@ const SignUp = () => {
                     <label htmlFor='name'>Name</label>
                     <input
                         type='text'
+                        value={name}
                         id='name'
                         name='name'
                         placeholder='name'
+                        onChange={e => setName(e.target.value)}
                     />
                 </div>
                 <button type='submit'>新規登録</button><br />

@@ -15,6 +15,7 @@ const AuthProvider = ({ children }) => {
     // レンダリングの後に実行する（遅延実行）
 
     useEffect(() => {
+        // 変更されたらsetUserをするようオブサーバーを登録する
         firebaseApp.auth().onAuthStateChanged(setUser)
         // 同じ↑
         // firebaseApp.auth().onAuthStateChanged(user => {
